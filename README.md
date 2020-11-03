@@ -106,3 +106,18 @@ create table notes (
 # db seeding syntax 
 insert into dbTableName ( id, note_name, content, date_added, folder_id )
 values ('','','','','',);
+
+
+# BEFORE DEPLOY 
+`heroku important steps`
+
+ change the database url to DATABASE_URL from DB_URL
+
+ you don't need to change the test_DB_URL because we don't use it in production. 
+
+then manual check the package.json and make sure that you have postgrator into the dependencies,it might be only in the dev dependencies and heroku will ignore it. This means we can't migrate the files in the server
+
+we type heroku run npm run migrate to get started on the migration. 
+
+heroku pg:psql is a handy tool that will get us into the shell there. Then we can do \dt to see the tables in heroku
+

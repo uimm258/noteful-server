@@ -6,6 +6,8 @@ const morgan = require('morgan');
 const cors = require('cors');
 const helmet = require('helmet');
 const { NODE_ENV } = require('./config');
+const foldersRouter = require('./folders/folders_router');
+const notesRouter = require('./notes/notes_router');
 
 
 const app = express();
@@ -16,12 +18,12 @@ const morganOption = NODE_ENV === 'production' ? 'tiny' : 'common';
 app.use(morgan(morganOption));
 app.use(helmet());
 app.use(cors());
-app.use('/bookmarks', bookmarksRouter);
 
+// routes for folders and notes
+app.use('/api/folders', foldersRouter);
+app.use('/api/notes', notesRouter);
 
-
-
-// routes
+// default route
 
 app.get('/', (req, res) => {
   res.send('Hello, world!');
