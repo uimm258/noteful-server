@@ -1,0 +1,36 @@
+{
+  "name": "noteful_server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --require test/setup.js",
+    "dev": "nodemon src/server.js",
+    "migrate": "postgrator --config postgrator-config.js",
+    "migrate:test": "env NODE_ENV=test npm run migrate",
+    "start": "node src/server.js",
+    "predeploy": "npm audit",
+    "deploy": "git push heroku master"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "eslint": "^7.11.0",
+    "express": "^4.17.1",
+    "helmet": "^4.1.1",
+    "knex": "^0.21.8",
+    "morgan": "^1.10.0",
+    "pg": "^8.4.2",
+    "xss": "^1.0.8"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^8.2.0",
+    "nodemon": "^2.0.6",
+    "postgrator-cli": "^3.2.0",
+    "supertest": "^5.0.0"
+  }
+}
