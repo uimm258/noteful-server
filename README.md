@@ -42,6 +42,7 @@ npm i nodemon
 # database
 npm i knex
 npm i pg
+npm i dotenv
 # validation and security
 npm i xss for validating inputs
 npm i helmet

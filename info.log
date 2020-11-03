@@ -1,0 +1,9 @@
+{"message":"The name is missing for the folders post","level":"error"}
+{"message":"folder with id 7 created","level":"info"}
+{"message":"folder with id 8 created","level":"info"}
+{"message":"folder with id 9 created","level":"info"}
+{"message":"the id value is missing from notes post","level":"error"}
+{"message":"note with id 12 has been created","level":"info"}
+{"message":"note with id 13 has been created","level":"info"}
+{"message":"note with id 14 has been created","level":"info"}
+{"message":"note with id 14 deleted","level":"info"}

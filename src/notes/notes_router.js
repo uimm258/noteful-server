@@ -1,6 +1,6 @@
 /* eslint-disable strict */
 const express = require('express');
-const NotesService = require('./notes-service');
+const NotesService = require('./notes_service');
 const xss = require('xss');
 const notesRouter = express.Router();
 const jsonParser = express.json();
@@ -24,7 +24,7 @@ notesRouter
       .catch(next);
   })
   .post(jsonParser, (req, res, next) => {
-    for (const field of ['id', 'note_name', 'content', 'date_added', 'folder_id']) {
+    for (const field of ['note_name', 'content', 'folder_id']) {
       if (!req.body[field]) {
         logger.error(`the ${field} value is missing from notes post`);
         return res
@@ -33,14 +33,12 @@ notesRouter
       }
     }
     const newNote = {
-      id: req.body.id,
       note_name: xss(req.body.note_name),
       content: xss(req.body.content),
-      date_added: req.body.date_added,
       folder_id: req.body.folder_id,
     };
     NotesService
-      .addNote(req.app.get('db'), newNote)
+      .insertNote(req.app.get('db'), newNote)
       .then((note) => {
         logger.info(`note with id ${note.id} has been created`);
         res.status(201).location(`/notes/${note.id}`).json(note);
@@ -53,7 +51,7 @@ notesRouter
   .all((req, res, next) => {
     const { note_id } = req.params;
     NotesService
-      .getNoteById(req.app.get('db'), note_id)
+      .getById(req.app.get('db'), note_id)
       .then((note) => {
         if (!note) {
           logger.error(`Note with id ${note_id} not found`);
