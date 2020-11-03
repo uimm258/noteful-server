@@ -8,7 +8,7 @@ const logger = require('../logger');
 
 const serializeNote = (note) => ({
   id: note.id,
-  note_name: xss(note.name),
+  note_name: xss(note.note_name),
   content: xss(note.content),
   date_added: note.date,
   folder_id: note.folder_id,
@@ -26,7 +26,7 @@ notesRouter
   .post(jsonParser, (req, res, next) => {
     for (const field of ['id', 'note_name', 'content', 'date_added', 'folder_id']) {
       if (!req.body[field]) {
-        logger.error(`${field} is missing from notes post`);
+        logger.error(`the ${field} value is missing from notes post`);
         return res
           .status(400)
           .json({ error: { message: `${field} is missing` } });
@@ -34,7 +34,7 @@ notesRouter
     }
     const newNote = {
       id: req.body.id,
-      note_name: xss(req.body.title),
+      note_name: xss(req.body.note_name),
       content: xss(req.body.content),
       date_added: req.body.date_added,
       folder_id: req.body.folder_id,
@@ -42,8 +42,7 @@ notesRouter
     NotesService
       .addNote(req.app.get('db'), newNote)
       .then((note) => {
-        console.log('note', note);
-        logger.info(`note with id ${note.id} created`);
+        logger.info(`note with id ${note.id} has been created`);
         res.status(201).location(`/notes/${note.id}`).json(note);
       })
       .catch(next);
@@ -81,7 +80,7 @@ notesRouter
   })
   .patch(jsonParser, (req, res, next) => {
     const noteUpdates = req.body;
-    console.log('noteupdates', noteUpdates);
+    // eslint-disable-next-line
     if (Object.keys(noteUpdates).length == 0) {
       logger.info('note must have values to update');
       return res.status(400).json({
