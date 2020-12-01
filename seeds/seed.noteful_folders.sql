@@ -1,4 +1,4 @@
-insert into folders (id, folder_name)
+insert into folders (id, name)
 values
 ('0','Important'),
 ('1','Super'),

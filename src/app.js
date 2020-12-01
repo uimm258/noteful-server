@@ -20,8 +20,8 @@ app.use(helmet());
 app.use(cors());
 
 // routes for folders and notes
-app.use('/folders', foldersRouter);
-app.use('/notes', notesRouter);
+app.use('/folder', foldersRouter);
+app.use('/note', notesRouter);
 
 // default route
 
