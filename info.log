@@ -29,3 +29,8 @@
 {"message":"note with id 1 has been created","level":"info"}
 {"message":"folder with id 1 created","level":"info"}
 {"message":"note with id 1 has been created","level":"info"}
+{"message":"note with id 2 has been created","level":"info"}
+{"message":"note with id 2 deleted","level":"info"}
+{"message":"Note with id 2 not found","level":"error"}
+{"message":"note with id 3 has been created","level":"info"}
+{"message":"note with id 3 deleted","level":"info"}

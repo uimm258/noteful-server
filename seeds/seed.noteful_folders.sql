@@ -1,9 +1,9 @@
 insert into folders (id, name)
 values
-('0','Important'),
-('1','Super'),
-('2','Spangly'),
-('3','Personal'),
-('4','Work'),
-('5','Family'),
-('6','Vacation');
+('1','Important'),
+('2','Super'),
+('3','Spangly'),
+('4','Personal'),
+('5','Work'),
+('6','Family'),
+('7','Vacation');
