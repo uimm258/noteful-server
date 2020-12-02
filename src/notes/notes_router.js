@@ -41,7 +41,7 @@ notesRouter
       .insertNote(req.app.get('db'), newNote)
       .then((note) => {
         logger.info(`note with id ${note.id} has been created`);
-        res.status(201).location(`/notes/${note.id}`).json(note);
+        res.status(201).location(`/note/${note.id}`).json(note);
       })
       .catch(next);
   });

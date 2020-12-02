@@ -35,7 +35,7 @@ foldersRouter
       .insertFolder(req.app.get('db'), newFolder)
       .then((folder) => {
         logger.info(`folder with id ${folder.id} created`);
-        res.status(201).location(`/folders/${folder.id}`).json(folder);
+        res.status(201).location(`/folder/${folder.id}`).json(folder);
       })
       .catch(next);
   });
