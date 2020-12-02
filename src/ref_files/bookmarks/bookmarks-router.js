@@ -12,7 +12,7 @@ const serializeBookmark = bookmark => ({
   url: xss(bookmark.url),
   description: xss(bookmark.description),
   rating: parseInt(xss(bookmark.rating)),
-  date_added: bookmark.date_added,
+  modified: bookmark.modified,
 });
 
 bookmarksRouter
@@ -72,7 +72,7 @@ bookmarksRouter
       url: xss(res.bookmark.url),
       description: xss(res.bookmark.description),
       rating: parseInt(xss(res.bookmark.rating)),
-      date_added: res.bookmark.date_added,
+      modified: res.bookmark.modified,
     });
   })
   .delete((req, res, next) => {

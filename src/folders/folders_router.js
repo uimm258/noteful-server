@@ -8,7 +8,7 @@ const logger = require('../logger');
 
 const serializeFolder = (folder) => ({
   id: folder.id,
-  folder_name: xss(folder.folder_name),
+  name: xss(folder.name),
 });
 
 foldersRouter
@@ -20,7 +20,7 @@ foldersRouter
       .catch(next);
   })
   .post(jsonParser, (req, res, next) => {
-    for (const field of ['folder_name']) {
+    for (const field of ['name']) {
       if (!req.body[field]) {
         logger.error(`The ${field} is missing for the folders post`);
         return res
@@ -29,7 +29,7 @@ foldersRouter
       }
     }
     const newFolder = {
-      folder_name: xss(req.body.folder_name),
+      name: xss(req.body.name),
     };
     FoldersService
       .insertFolder(req.app.get('db'), newFolder)
@@ -41,13 +41,13 @@ foldersRouter
   });
 
 foldersRouter
-  .route('/:folder_id')
+  .route('/:folderId')
   .all((req, res, next) => {
-    const { folder_id } = req.params;
-    FoldersService.getById(req.app.get('db'), folder_id)
+    const { folderId } = req.params;
+    FoldersService.getById(req.app.get('db'), folderId)
       .then((folder) => {
         if (!folder) {
-          logger.error(`The folder with id the ${folder_id} was not found`);
+          logger.error(`The folder with id the ${folderId} was not found`);
           return res
             .status(404)
             .json({ error: { message: 'folder not found' } });
@@ -62,10 +62,10 @@ foldersRouter
     res.json(serializeFolder(folder));
   })
   .delete((req, res, next) => {
-    const { folder_id } = req.params;
-    FoldersService.deleteFolder(req.app.get('db'), folder_id)
+    const { folderId } = req.params;
+    FoldersService.deleteFolder(req.app.get('db'), folderId)
       .then(() => {
-        logger.info(`folder with id ${folder_id} has been deleted`);
+        logger.info(`folder with id ${folderId} has been deleted`);
         res.status(204).end();
       })
       .catch(next);

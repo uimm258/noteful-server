@@ -8,10 +8,10 @@ const logger = require('../logger');
 
 const serializeNote = (note) => ({
   id: note.id,
-  note_name: xss(note.note_name),
+  name: xss(note.name),
   content: xss(note.content),
-  date_added: note.date_added,
-  folder_id: note.folder_id,
+  modified: note.modified,
+  folderId: note.folderId,
 });
 
 notesRouter
@@ -24,7 +24,7 @@ notesRouter
       .catch(next);
   })
   .post(jsonParser, (req, res, next) => {
-    for (const field of ['note_name', 'content', 'folder_id']) {
+    for (const field of ['name', 'content', 'folderId']) {
       if (!req.body[field]) {
         logger.error(`the ${field} value is missing from notes post`);
         return res
@@ -33,9 +33,9 @@ notesRouter
       }
     }
     const newNote = {
-      note_name: xss(req.body.note_name),
+      name: xss(req.body.name),
       content: xss(req.body.content),
-      folder_id: req.body.folder_id,
+      folderId: req.body.folderId,
     };
     NotesService
       .insertNote(req.app.get('db'), newNote)
