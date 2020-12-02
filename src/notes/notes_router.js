@@ -47,14 +47,14 @@ notesRouter
   });
 
 notesRouter
-  .route('/:note_id')
+  .route('/:noteId')
   .all((req, res, next) => {
-    const { note_id } = req.params;
+    const { noteId } = req.params;
     NotesService
-      .getById(req.app.get('db'), note_id)
+      .getById(req.app.get('db'), noteId)
       .then((note) => {
         if (!note) {
-          logger.error(`Note with id ${note_id} not found`);
+          logger.error(`Note with id ${noteId} not found`);
           return res.status(404).json({ error: { message: 'Note not found' } });
         }
         res.note = note;
@@ -67,11 +67,11 @@ notesRouter
     res.json(serializeNote(note));
   })
   .delete((req, res, next) => {
-    const { note_id } = req.params;
+    const { noteId } = req.params;
     NotesService
-      .deleteNote(req.app.get('db'), note_id)
+      .deleteNote(req.app.get('db'), noteId)
       .then(() => {
-        logger.info(`note with id ${note_id} deleted`);
+        logger.info(`note with id ${noteId} deleted`);
         res.status(204).end();
       })
       .catch(next);
