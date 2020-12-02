@@ -105,7 +105,7 @@ create table notes (
 )
 
 # db seeding syntax 
-insert into dbTableName ( id, name, content, modified, folderId )
+insert into dbTableName ( id, name, content, modified, folder_id )
 values ('','','','','',);
 
 

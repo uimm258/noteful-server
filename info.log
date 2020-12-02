@@ -9,8 +9,8 @@
 {"message":"note with id 14 deleted","level":"info"}
 {"message":"The name is missing for the folders post","level":"error"}
 {"message":"folder with id 10 created","level":"info"}
-{"message":"the folderId value is missing from notes post","level":"error"}
-{"message":"the folderId value is missing from notes post","level":"error"}
+{"message":"the folder_id value is missing from notes post","level":"error"}
+{"message":"the folder_id value is missing from notes post","level":"error"}
 {"message":"note with id 15 has been created","level":"info"}
 {"message":"folder with id 11 created","level":"info"}
 {"message":"note with id 16 has been created","level":"info"}
@@ -23,3 +23,9 @@
 {"message":"folder with id 12 created","level":"info"}
 {"message":"note with id 17 has been created","level":"info"}
 {"message":"note with id 17 deleted","level":"info"}
+{"message":"The name is missing for the folders post","level":"error"}
+{"message":"folder with id 1 created","level":"info"}
+{"message":"the folder_id value is missing from notes post","level":"error"}
+{"message":"note with id 1 has been created","level":"info"}
+{"message":"folder with id 1 created","level":"info"}
+{"message":"note with id 1 has been created","level":"info"}

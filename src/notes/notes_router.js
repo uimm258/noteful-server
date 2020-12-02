@@ -11,7 +11,7 @@ const serializeNote = (note) => ({
   name: xss(note.name),
   content: xss(note.content),
   modified: note.modified,
-  folderId: note.folderId,
+  folder_id: note.folder_id,
 });
 
 notesRouter
@@ -24,7 +24,7 @@ notesRouter
       .catch(next);
   })
   .post(jsonParser, (req, res, next) => {
-    for (const field of ['name', 'content', 'folderId']) {
+    for (const field of ['name', 'content', 'folder_id']) {
       if (!req.body[field]) {
         logger.error(`the ${field} value is missing from notes post`);
         return res
@@ -35,7 +35,7 @@ notesRouter
     const newNote = {
       name: xss(req.body.name),
       content: xss(req.body.content),
-      folderId: req.body.folderId,
+      folder_id: req.body.folder_id,
     };
     NotesService
       .insertNote(req.app.get('db'), newNote)

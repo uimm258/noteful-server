@@ -15,6 +15,7 @@ foldersRouter
   .route('/')
   .get((req, res, next) => {
     const knex = req.app.get('db');
+    //console.log("knex: ", knex)
     FoldersService.getAllFolders(knex)
       .then((folders) => res.json(folders.map(serializeFolder)))
       .catch(next);
@@ -41,13 +42,13 @@ foldersRouter
   });
 
 foldersRouter
-  .route('/:folderId')
+  .route('/:folder_id')
   .all((req, res, next) => {
-    const { folderId } = req.params;
-    FoldersService.getById(req.app.get('db'), folderId)
+    const { folder_id } = req.params;
+    FoldersService.getById(req.app.get('db'), folder_id)
       .then((folder) => {
         if (!folder) {
-          logger.error(`The folder with id the ${folderId} was not found`);
+          logger.error(`The folder with id the ${folder_id} was not found`);
           return res
             .status(404)
             .json({ error: { message: 'folder not found' } });
@@ -62,10 +63,10 @@ foldersRouter
     res.json(serializeFolder(folder));
   })
   .delete((req, res, next) => {
-    const { folderId } = req.params;
-    FoldersService.deleteFolder(req.app.get('db'), folderId)
+    const { folder_id } = req.params;
+    FoldersService.deleteFolder(req.app.get('db'), folder_id)
       .then(() => {
-        logger.info(`folder with id ${folderId} has been deleted`);
+        logger.info(`folder with id ${folder_id} has been deleted`);
         res.status(204).end();
       })
       .catch(next);
